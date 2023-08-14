@@ -45,8 +45,9 @@ function setDisplayValue(newDisplayValue) {
     let roundedValue = newDisplayValue.toString();
     if (roundedValue.length > 8) {
         roundedValue = roundedValue.slice(0, 8);
+        console.log('rounding');
     }
-    display.textContent = newDisplayValue;
+    display.textContent = roundedValue;
 }
 
 function appendDisplayValue(charToAppend) {
@@ -76,7 +77,6 @@ function evaluateDisplay() { // happens when you hit equals
 
     // get second value
     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
-        console.log(expression[i]);
         b += expression[i];
         i++;
         // if(i > 10**3) {
