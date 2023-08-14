@@ -124,26 +124,6 @@ function evaluateExpression(expression) { // expression is an array type
         secondArgument = parseFloat(secondArgument);
         let result = operate(firstArgument, op, secondArgument);
         return result;
-
-        // if (expression.length == 0) { // no operator; clear stack
-        //     let result = '';
-        //     while (stack.length > 0) {
-        //         result += stack.pop();
-        //     }
-        //     return parseFloat(result); 
-        // }
-
-        // else { // we have another expression to evaluate!
-        //     // evaluate the number in the stack and store in secondArgument
-        //     let secondArgument = ''; 
-        //     for(let i = 0; i < stack.length; i++) {
-        //         secondArgument += stack.pop();
-        //     }
-        //     secondArgument = parseFloat(secondArgument); 
-        //     op = expression.pop();
-        //     let result = operate(secondArgument, op, evaluateExpression(expression));
-        //     return result;
-        // }
     }
 }
 
