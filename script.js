@@ -157,3 +157,29 @@ clearBtn.addEventListener('click', () => setDisplayValue('0'));
 
 let equalsBtn = document.querySelector('.equals');
 equalsBtn.addEventListener('click', () => evaluateDisplay());
+
+/****** NEW DOM ******/
+let buttonContainer = document.querySelector('.button-container');
+let buttonMapping = [Array.from('789/'), Array.from('456*'), Array.from('123-'), Array.from('.0=+')]
+
+for (let i = 0; i < 4; i++) {
+    let row = document.createElement('div');
+    row.classList.add(`row-${i}`);
+    for(let j = 0; j < 4; j++) {
+        let btn = document.createElement('button');
+        btn.classList.add(`btn-${i}-${j}`);
+
+        let buttonLabel = buttonMapping[i][j];
+
+        btn.textContent = buttonLabel;
+        if (Array.from('1234567890+-*/'.includes(buttonLabel))) { // numbers and operations
+            btn.addEventListener('click', () => appendDisplayValue(buttonLabel));
+        }
+
+        row.appendChild(btn);
+    }
+    buttonContainer.appendChild(row);
+}
+
+
+console.log(buttonMapping);
