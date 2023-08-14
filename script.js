@@ -51,7 +51,6 @@ function appendDisplayValue(charToAppend) {
 }
 
 
-
 /***********/
 /*   DOM   */
 /***********/
@@ -61,6 +60,7 @@ for (let i = 0; i < 10; i++) {
     let btn = document.createElement('button');
     btn.classList.add(`btn-${i}`);
     btn.textContent = i;
+    btn.addEventListener('click', () => appendDisplayValue(i));
     numberContainer.appendChild(btn);
 }
 
