@@ -129,34 +129,34 @@ function evaluateExpression(expression) { // expression is an array type
 /***********/
 /*   DOM   */
 /***********/
-let numberContainer = document.querySelector('.numbers');
+// let numberContainer = document.querySelector('.numbers');
 
-for (let i = 0; i < 10; i++) {
-    let btn = document.createElement('button');
-    btn.classList.add(`btn-${i}`);
-    btn.textContent = i;
-    btn.addEventListener('click', () => appendDisplayValue(i));
-    numberContainer.appendChild(btn);
-}
+// for (let i = 0; i < 10; i++) {
+//     let btn = document.createElement('button');
+//     btn.classList.add(`btn-${i}`);
+//     btn.textContent = i;
+//     btn.addEventListener('click', () => appendDisplayValue(i));
+//     numberContainer.appendChild(btn);
+// }
 
-let operationContainer = document.querySelector('.operations');
+// let operationContainer = document.querySelector('.operations');
 
-operations = ['+', '-', '*', '/', '=', 'AC'];
-operationsClass = ['add', 'subtract', 'multiply', 'divide', 'equals', 'clear'];
+// operations = ['+', '-', '*', '/', '=', 'AC'];
+// operationsClass = ['add', 'subtract', 'multiply', 'divide', 'equals', 'clear'];
 
-for (let i = 0; i < operations.length; i++) {
-    let btn = document.createElement('button');
-    btn.classList.add(operationsClass[i]);
-    btn.textContent = operations[i];
-    btn.addEventListener('click', () => appendDisplayValue(operations[i]));
-    operationContainer.appendChild(btn);
-}
+// for (let i = 0; i < operations.length; i++) {
+//     let btn = document.createElement('button');
+//     btn.classList.add(operationsClass[i]);
+//     btn.textContent = operations[i];
+//     btn.addEventListener('click', () => appendDisplayValue(operations[i]));
+//     operationContainer.appendChild(btn);
+// }
 
-let clearBtn = document.querySelector('.clear');
-clearBtn.addEventListener('click', () => setDisplayValue('0'));
+// // let clearBtn = document.querySelector('.clear');
+// // clearBtn.addEventListener('click', () => setDisplayValue('0'));
 
-let equalsBtn = document.querySelector('.equals');
-equalsBtn.addEventListener('click', () => evaluateDisplay());
+// let equalsBtn = document.querySelector('.equals');
+// equalsBtn.addEventListener('click', () => evaluateDisplay());
 
 /****** NEW DOM ******/
 let buttonContainer = document.querySelector('.button-container');
@@ -172,7 +172,7 @@ for (let i = 0; i < 4; i++) {
         let buttonLabel = buttonMapping[i][j];
 
         btn.textContent = buttonLabel;
-        if (Array.from('1234567890+-*/'.includes(buttonLabel))) { // numbers and operations
+        if (Array.from('1234567890+-*/').includes(buttonLabel)) { // numbers and operations
             btn.addEventListener('click', () => appendDisplayValue(buttonLabel));
         }
 
@@ -185,5 +185,17 @@ let clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', () => setDisplayValue('0'));
 
 let deleteBtn = document.querySelector('.delete');
+deleteBtn.addEventListener('click', () => {
+    let displayNow = getDisplayValue();
+    if (displayNow.length == 1) {
+        setDisplayValue(0);
+    }
+    else {
+        setDisplayValue( displayNow.slice(0, -1) ); // delete last character
+    }
+});
+
+let equalsBtn = document.querySelector('.btn-3-2');
+equalsBtn.addEventListener('click', () => evaluateDisplay());
 
 console.log(buttonMapping);
