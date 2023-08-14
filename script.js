@@ -34,6 +34,27 @@ function operate(a, op, b) {
     }
 }
 
+// Display methods
+function getDisplayValue() {
+    let display = document.querySelector('.display');
+    return display.textContent;
+}
+
+function setDisplayValue(newDisplayValue) {
+    let display = document.querySelector('.display');
+    display.textContent = newDisplayValue;
+}
+
+function appendDisplayValue(charToAppend) {
+    let display = document.querySelector('.display');
+    if (display.textContent === '0') {
+        setDisplayValue(charToAppend);
+    }
+    else {
+        display.textContent += charToAppend;
+    }
+}
+
 /***********/
 /*   DOM   */
 /***********/
