@@ -1,3 +1,6 @@
+/***********/
+/* METHODS */
+/***********/
 // simple calculator operations
 function add(a, b) {
     return a+b;
@@ -30,3 +33,7 @@ function operate(a, op, b) {
             return 'ERROR';
     }
 }
+
+/***********/
+/*   DOM   */
+/***********/
