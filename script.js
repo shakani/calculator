@@ -83,10 +83,9 @@ function evaluateDisplay() { // happens when you hit equals
     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
         b += expression[i];
         i++;
-        // if(i > 10**3) {
-        //     console.log('broke b');
-        //     break;
-        // }
+        if(i == expression.length) {
+            break;
+        }
     }
     a = parseFloat(a); b = parseFloat(b);
 
