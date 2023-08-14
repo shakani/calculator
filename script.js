@@ -69,7 +69,7 @@ function evaluateDisplay() { // happens when you hit equals
         a += (digit * 10**placeValue);
         placeValue++;
     }
-    let result = operate(a, b, op);
+    let result = operate(a, op, b);
     setDisplayValue(result);
 }
 
