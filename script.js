@@ -181,5 +181,9 @@ for (let i = 0; i < 4; i++) {
     buttonContainer.appendChild(row);
 }
 
+let clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', () => setDisplayValue('0'));
+
+let deleteBtn = document.querySelector('.delete');
 
 console.log(buttonMapping);
