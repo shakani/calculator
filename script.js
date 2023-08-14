@@ -71,7 +71,32 @@ function evaluateDisplay() {
 function evaluateExpression(expression) { // expression is an array type
     stack = []; 
     operations = ['+', '-', '*', '/'];
-    
+    if (expression === []) { // empty expression
+        return 0;
+    }
+    else {
+        while (expression.length > 0 && !operations.include(expression.slice(-1)[0])) { 
+            stack.push(expression.pop()); // populate stack with expression until we hit an operator or clear expression
+        }
+        if (expression.length == 0) { // no operator; clear stack
+            let result = '';
+            for(let i = 0; i < stack.length; i++) {
+                result += stack.pop();
+            }
+            return parseFloat(result); 
+        }
+        else { // we have another expression to evaluate!
+            // evaluate the number in the stack and store in firstArgument
+            let firstArgument = ''; 
+            for(let i = 0; i < stack.length; i++) {
+                firstArgument += stack.pop();
+            }
+            firstArgument = parseFloat(firstArgument); 
+            op = expression.pop();
+            secondArgument = evaluateExpression(expression);
+            return operate(firstArgument, op, secondArgument);
+        }
+    }
 }
 
 // function evaluateDisplayOld() { // happens when you hit equals
