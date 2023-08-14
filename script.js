@@ -59,40 +59,73 @@ function appendDisplayValue(charToAppend) {
     }
 }
 
-function evaluateDisplay() { // happens when you hit equals
+function evaluateDisplay() {
     let expression = getDisplayValue().split("");
+    expression.pop(); // remove equals sign
     console.log(expression);
-
-    let a = ''; let b = ''; // containers for first and second values
-    let i = 0; // iterator through string
-    ops = ['+', '-', '*', '/', '='];
-
-    // get first value
-    while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
-        a += expression[i];
-        i++;
-        // if(i > 10**3) {
-        //     console.log('broke a');
-        //     break;
-        // }
-    }
-
-    // get operator
-    op = expression[i]; i++; 
-
-    // get second value
-    while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
-        b += expression[i];
-        i++;
-        if(i == expression.length) {
-            break;
-        }
-    }
-    a = parseFloat(a); b = parseFloat(b);
-
-    let result = operate(a, op, b);
+    let result = evaluateDisplay(expression);
     setDisplayValue(result);
 }
+
+function evaluateExpression(expression) { // expression is an array type
+    stack = []; 
+    operations = ['+', '-', '*', '/'];
+    while (!operations.includes(expression.slice(-1))) { // while top of expression is a number, keep adding to stack
+        stack.push(expression.pop());
+    }
+    if (expression === '') { // no operator in expression
+        let result = '';
+        for(let i = 0; i < stack.length; i++) {
+            result += stack.pop();
+        }
+        return parseFloat(result); 
+    }
+    else { // operator in expression
+        operator = expression.pop();
+        let firstArgument = '';
+        for (let i = 0; i < firstArgument.length; i++) {
+            firstArgument += stack.pop();
+        }
+        firstArgument = parseFloat(firstArgument); // convert first argument to a float from stack
+        secondArgument = evaluateDisplay(expression); // evaluate the rest of the expression
+        return operate(firstArgument, operator, secondArgument);
+    }
+}
+
+// function evaluateDisplayOld() { // happens when you hit equals
+//     let expression = getDisplayValue().split("");
+//     console.log(expression);
+
+//     let a = ''; let b = ''; // containers for first and second values
+//     let i = 0; // iterator through string
+//     ops = ['+', '-', '*', '/', '='];
+
+//     // get first value
+//     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
+//         a += expression[i];
+//         i++;
+//         // if(i > 10**3) {
+//         //     console.log('broke a');
+//         //     break;
+//         // }
+//     }
+
+//     // get operator
+//     op = expression[i]; i++; 
+
+//     // get second value
+//     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
+//         b += expression[i];
+//         i++;
+//         if(i == expression.length) {
+//             break;
+//         }
+//     }
+//     a = parseFloat(a); b = parseFloat(b);
+
+//     let result = operate(a, op, b);
+//     setDisplayValue(result);
+// }
 
 /***********/
 /*   DOM   */
