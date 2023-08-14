@@ -203,4 +203,5 @@ deleteBtn.addEventListener('click', () => {
 let equalsBtn = document.querySelector('.btn-3-2');
 equalsBtn.addEventListener('click', () => evaluateDisplay());
 
-console.log(buttonMapping);
+let dotBtn = document.querySelector('.btn-3-0'); // add decimals later!
+dotBtn.textContent = '';
