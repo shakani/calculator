@@ -101,3 +101,6 @@ for (let i = 0; i < operations.length; i++) {
 
 let btn = document.querySelector('.clear');
 btn.addEventListener('click', () => setDisplayValue('0'));
+
+let btn = document.querySelector('.equals');
+btn.addEventListener('click'. () => evaluateDisplay());
