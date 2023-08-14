@@ -50,12 +50,13 @@ function setDisplayValue(newDisplayValue) {
 }
 
 function appendDisplayValue(charToAppend) {
+    ops = ['+', '-', '*', '/'];
     let display = document.querySelector('.display');
+
     if (display.textContent === '0') {
         display.textContent = charToAppend;
     }
-    let displayTail = display.textContent.slice(-1)[0];
-    if (['+', '-', '*', '/'].includes(displayTail)) { // overwrite operators if needed
+    else if (ops.includes( display.textContent.slice(-1)[0] ) && ops.includes(charToAppend)) { // overwrite operators if needed
         display.textContent = display.textContent.slice(0, -1) + charToAppend;
     }
     else {
@@ -66,9 +67,7 @@ function appendDisplayValue(charToAppend) {
 function evaluateDisplay() {
     let expression = getDisplayValue().split("");
     expression.pop(); // remove equals sign
-    console.log(expression);
     let result = evaluateExpression(expression);
-    console.log(result);
     setDisplayValue(result);
 }
 
@@ -84,7 +83,7 @@ function evaluateExpression(expression) { // expression is an array type
         }
         if (expression.length == 0) { // no operator; clear stack
             let result = '';
-            for(let i = 0; i < stack.length; i++) {
+            while (stack.length > 0) {
                 result += stack.pop();
             }
             return parseFloat(result); 
@@ -97,8 +96,8 @@ function evaluateExpression(expression) { // expression is an array type
             }
             secondArgument = parseFloat(secondArgument); 
             op = expression.pop();
+            console.log(expression, op, secondArgument);
             firstArgument = evaluateExpression(expression);
-            console.log(firstArgument, op, secondArgument);
             return operate(firstArgument, op, secondArgument);
         }
     }
