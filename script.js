@@ -54,6 +54,10 @@ function appendDisplayValue(charToAppend) {
     if (display.textContent === '0') {
         display.textContent = charToAppend;
     }
+    let displayTail = display.textContent.slice(-1)[0];
+    if ['+', '-', '*', '/'].includes(displayTail) { // overwrite operators if needed
+        display.textContent = display.textContent.slice(0, -1) + charToAppend;
+    }
     else {
         display.textContent += charToAppend;
     }
@@ -75,7 +79,7 @@ function evaluateExpression(expression) { // expression is an array type
         return 0;
     }
     else {
-        while (expression.length > 0 && !operations.include(expression.slice(-1)[0])) { 
+        while (expression.length > 0 && !operations.includes(expression.slice(-1)[0])) { 
             stack.push(expression.pop()); // populate stack with expression until we hit an operator or clear expression
         }
         if (expression.length == 0) { // no operator; clear stack
@@ -86,14 +90,15 @@ function evaluateExpression(expression) { // expression is an array type
             return parseFloat(result); 
         }
         else { // we have another expression to evaluate!
-            // evaluate the number in the stack and store in firstArgument
-            let firstArgument = ''; 
+            // evaluate the number in the stack and store in secondArgument
+            let secondArgument = ''; 
             for(let i = 0; i < stack.length; i++) {
-                firstArgument += stack.pop();
+                secondArgument += stack.pop();
             }
-            firstArgument = parseFloat(firstArgument); 
+            secondArgument = parseFloat(secondArgument); 
             op = expression.pop();
-            secondArgument = evaluateExpression(expression);
+            firstArgument = evaluateExpression(expression);
+            console.log(firstArgument, op, secondArgument);
             return operate(firstArgument, op, secondArgument);
         }
     }
