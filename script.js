@@ -55,7 +55,7 @@ function appendDisplayValue(charToAppend) {
         display.textContent = charToAppend;
     }
     let displayTail = display.textContent.slice(-1)[0];
-    if ['+', '-', '*', '/'].includes(displayTail) { // overwrite operators if needed
+    if (['+', '-', '*', '/'].includes(displayTail)) { // overwrite operators if needed
         display.textContent = display.textContent.slice(0, -1) + charToAppend;
     }
     else {
