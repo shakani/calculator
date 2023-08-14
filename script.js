@@ -2,33 +2,33 @@
 /* METHODS */
 /***********/
 // simple calculator operations
-function add(a, b) {
-    return a+b;
+function add(firstArgument, secondArgument) {
+    return firstArgument+secondArgument;
 }
 
-function subtract(a, b) {
-    return a-b;
+function subtract(firstArgument, secondArgument) {
+    return firstArgument-secondArgument;
 }
 
-function multiply(a, b) {
-    return a*b;
+function multiply(firstArgument, secondArgument) {
+    return firstArgument*secondArgument;
 }
 
-function divide(a, b) {
-    return a/b;
+function divide(firstArgument, secondArgument) {
+    return firstArgument/secondArgument;
 }
 
 // calculator operate function
-function operate(b, op, a) {
+function operate(firstArgument, op, secondArgument) {
     switch(op) {
         case '+':
-            return add(a, b);
+            return add(firstArgument, secondArgument);
         case '-':
-            return subtract(a, b);
+            return subtract(firstArgument, secondArgument);
         case '*':
-            return multiply(a, b);
+            return multiply(firstArgument, secondArgument);
         case '/':
-            return divide(a, b);
+            return divide(firstArgument, secondArgument);
         default: 
             return 'ERROR';
     }
@@ -86,6 +86,8 @@ function evaluateDisplay() {
     setDisplayValue(result);
 }
 
+// only need to handle binary operator expressions
+// how to handle negative numbers?
 function evaluateExpression(expression) { // expression is an array type
     stack = []; 
     operations = ['+', '-', '*', '/'];
@@ -96,24 +98,52 @@ function evaluateExpression(expression) { // expression is an array type
         while (expression.length > 0 && !operations.includes(expression.slice(-1)[0])) { 
             stack.push(expression.pop()); // populate stack with expression until we hit an operator or clear expression
         }
-        if (expression.length == 0) { // no operator; clear stack
-            let result = '';
-            while (stack.length > 0) {
-                result += stack.pop();
+        if (expression.slice(-1)[0] === '-') { // we hit a minus sign; check if there's a number before me in the expression
+            // check if this is a negative sign
+            // negative sign on second argument occurs if there's an operator before the '-' sign
+            lastTwoChars = expression.slice(-2);
+            // lastTwoChars could be length 1 (if at beginning of expression) or length 2
+            // if it's length 1, then its first element is an operator ('-')  and we add this to the stack
+            // otherwise it's length 2; it's a negative sign if we have an operator preceding it as the first element of lastTwoChars
+            // we also push the negative sign to stack in this case
+            if (operations.includes(lastTwoChars[0])) {
+                stack.push(expression.pop());
             }
-            return parseFloat(result); 
         }
-        else { // we have another expression to evaluate!
-            // evaluate the number in the stack and store in secondArgument
-            let secondArgument = ''; 
-            for(let i = 0; i < stack.length; i++) {
-                secondArgument += stack.pop();
-            }
-            secondArgument = parseFloat(secondArgument); 
-            op = expression.pop();
-            let result = operate(secondArgument, op, evaluateExpression(expression));
-            return result;
+
+        // stack now contains second argument in reverse order (with a negative sign if needed)
+
+        op = expression.pop();
+        // take the operator
+        let firstArgument = ''; let secondArgument = ''; 
+        firstArgument = expression.join(''); // first argument is taken from the expression
+        while (stack.length > 0) {
+            secondArgument += stack.pop();
         }
+        firstArgument = parseFloat(firstArgument);
+        secondArgument = parseFloat(secondArgument);
+        let result = operate(firstArgument, op, secondArgument);
+        return result;
+
+        // if (expression.length == 0) { // no operator; clear stack
+        //     let result = '';
+        //     while (stack.length > 0) {
+        //         result += stack.pop();
+        //     }
+        //     return parseFloat(result); 
+        // }
+
+        // else { // we have another expression to evaluate!
+        //     // evaluate the number in the stack and store in secondArgument
+        //     let secondArgument = ''; 
+        //     for(let i = 0; i < stack.length; i++) {
+        //         secondArgument += stack.pop();
+        //     }
+        //     secondArgument = parseFloat(secondArgument); 
+        //     op = expression.pop();
+        //     let result = operate(secondArgument, op, evaluateExpression(expression));
+        //     return result;
+        // }
     }
 }
 
