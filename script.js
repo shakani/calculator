@@ -52,6 +52,11 @@ function setDisplayValue(newDisplayValue) {
 function appendDisplayValue(charToAppend) {
     ops = ['+', '-', '*', '/'];
     let display = document.querySelector('.display');
+
+    if (display.textContent.length > 8) {
+        return;
+    }
+
     let hasOperatorAlready = false;
     if (ops.includes(charToAppend)) { // if we're placing an operator, check if there's already one
         for(let i = 1; i < display.textContent.length; i++) { // start from 1 to exclude negative sign on numbers
