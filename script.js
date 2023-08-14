@@ -51,7 +51,12 @@ function setDisplayValue(newDisplayValue) {
 
 function appendDisplayValue(charToAppend) {
     let display = document.querySelector('.display');
-    display.textContent += charToAppend;
+    if (display.textContent === '0') {
+        display.textContent = charToAppend;
+    }
+    else {
+        display.textContent += charToAppend;
+    }
 }
 
 function evaluateDisplay() { // happens when you hit equals
