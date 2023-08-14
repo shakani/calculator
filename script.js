@@ -99,8 +99,8 @@ for (let i = 0; i < operations.length; i++) {
     operationContainer.appendChild(btn);
 }
 
-let btn = document.querySelector('.clear');
-btn.addEventListener('click', () => setDisplayValue('0'));
+let clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', () => setDisplayValue('0'));
 
-let btn = document.querySelector('.equals');
-btn.addEventListener('click'. () => evaluateDisplay());
+let equalsBtn = document.querySelector('.equals');
+equalsBtn.addEventListener('click', () => evaluateDisplay());
