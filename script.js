@@ -19,7 +19,7 @@ function divide(a, b) {
 }
 
 // calculator operate function
-function operate(a, op, b) {
+function operate(b, op, a) {
     switch(op) {
         case '+':
             return add(a, b);
@@ -96,10 +96,7 @@ function evaluateExpression(expression) { // expression is an array type
             }
             secondArgument = parseFloat(secondArgument); 
             op = expression.pop();
-            console.log(expression, op, secondArgument);
-            firstArgument = evaluateExpression(expression);
-            let result = operate(firstArgument, op, secondArgument);
-            console.log(result);
+            let result = operate(secondArgument, op, evaluateExpression(expression),);
             return result;
         }
     }
