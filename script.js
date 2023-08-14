@@ -53,7 +53,7 @@ function appendDisplayValue(charToAppend) {
     ops = ['+', '-', '*', '/'];
     let display = document.querySelector('.display');
 
-    if (display.textContent === '0') {
+    if (display.textContent === '0' && /^[0-9]/.test(charToAppend)) {
         display.textContent = charToAppend;
     }
     else if (ops.includes( display.textContent.slice(-1)[0] ) && ops.includes(charToAppend)) { // overwrite operators if needed
