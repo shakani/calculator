@@ -8,4 +8,10 @@ body {
     background-color: #eeffee;
 }
 
+.canvas {
+    margin-top: 100px;
+    border: solid 1px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
 
