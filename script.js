@@ -75,3 +75,6 @@ for (let i = 0; i < operations.length; i++) {
     btn.textContent = operations[i];
     operationContainer.appendChild(btn);
 }
+
+let btn = document.querySelector('.clear');
+btn.addEventListener('click', () => setDisplayValue('0'));
