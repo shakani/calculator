@@ -78,7 +78,6 @@ function evaluateDisplay() {
     let expression = getDisplayValue().split("");
     // filter out undefined
     expression = expression.filter((c) => !/^[a-zA-z]/.test(c));
-    console.log(expression);
     if (expression.slice(-1)[0] === '=') {
         expression.pop(); // remove equals sign
     }
@@ -122,7 +121,7 @@ function evaluateExpression(expression) { // expression is an array type
         }
         firstArgument = parseFloat(firstArgument);
         secondArgument = parseFloat(secondArgument);
-        let result = operate(firstArgument, op, secondArgument);
+        let result = (op) ? operate(firstArgument, op, secondArgument) : secondArgument;
         return result;
     }
 }
