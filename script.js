@@ -127,7 +127,13 @@ function evaluateExpression(expression) { // expression is an array type
         firstArgument = parseFloat(firstArgument);
         secondArgument = parseFloat(secondArgument);
         let result = (op) ? operate(firstArgument, op, secondArgument) : secondArgument;
-        return result;
+        if (result === Infinity) {
+            alert("You can't divide by zero!!!");
+            setDisplayValue(0);
+        }
+        else {
+            return result;
+        }
     }
 }
 
