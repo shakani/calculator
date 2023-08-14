@@ -52,6 +52,7 @@ function appendDisplayValue(charToAppend) {
 
 function evaluateDisplay() { // happens when you hit equals
     let expression = getDisplayValue().split("");
+    console.log(expression);
     if (expression.slice(-1) === '=') {
         expression.pop(); // get rid of equals sign
     }
