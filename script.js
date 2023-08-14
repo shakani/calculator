@@ -42,6 +42,10 @@ function getDisplayValue() {
 
 function setDisplayValue(newDisplayValue) {
     let display = document.querySelector('.display');
+    let roundedValue = newDisplayValue.toString();
+    if (roundedValue.length > 8) {
+        roundedValue = roundedValue.slice(0, 8);
+    }
     display.textContent = newDisplayValue;
 }
 
@@ -52,22 +56,33 @@ function appendDisplayValue(charToAppend) {
 
 function evaluateDisplay() { // happens when you hit equals
     let expression = getDisplayValue().split("");
-    console.log(expression);
-    if (expression.slice(-1)[0] === '=') {
-        expression.pop(); // get rid of equals sign if on top of stack
-    }
-    // get first value
+
     let a = ''; let b = ''; // containers for first and second values
     let i = 0; // iterator through string
-    ops = ['+', '-', '*', '/'];
+    ops = ['+', '-', '*', '/', '='];
+
+    // get first value
     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
         a += expression[i];
         i++;
+        // if(i > 10**3) {
+        //     console.log('broke a');
+        //     break;
+        // }
     }
-    op = expression[i]; i++; // get operator
+
+    // get operator
+    op = expression[i]; i++; 
+
+    // get second value
     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
+        console.log(expression[i]);
         b += expression[i];
         i++;
+        // if(i > 10**3) {
+        //     console.log('broke b');
+        //     break;
+        // }
     }
     a = parseFloat(a); b = parseFloat(b);
 
