@@ -47,13 +47,15 @@ function setDisplayValue(newDisplayValue) {
 
 function appendDisplayValue(charToAppend) {
     let display = document.querySelector('.display');
-    if (display.textContent === '0') {
+    if (display.textContent === '0') { // only appends to display if not on zero already
         setDisplayValue(charToAppend);
     }
     else {
         display.textContent += charToAppend;
     }
 }
+
+
 
 /***********/
 /*   DOM   */
