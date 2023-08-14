@@ -37,3 +37,10 @@ function operate(a, op, b) {
 /***********/
 /*   DOM   */
 /***********/
+let numberContainer = document.querySelector('.numbers');
+
+for (let i = 0; i < 10; i++) {
+    let btn = document.createElement('button');
+    btn.classList.add('btn-${i}');
+    numberContainer.appendChild(btn);
+}
