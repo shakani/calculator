@@ -96,46 +96,11 @@ function evaluateExpression(expression) { // expression is an array type
             }
             secondArgument = parseFloat(secondArgument); 
             op = expression.pop();
-            let result = operate(secondArgument, op, evaluateExpression(expression),);
+            let result = operate(secondArgument, op, evaluateExpression(expression));
             return result;
         }
     }
 }
-
-// function evaluateDisplayOld() { // happens when you hit equals
-//     let expression = getDisplayValue().split("");
-//     console.log(expression);
-
-//     let a = ''; let b = ''; // containers for first and second values
-//     let i = 0; // iterator through string
-//     ops = ['+', '-', '*', '/', '='];
-
-//     // get first value
-//     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
-//         a += expression[i];
-//         i++;
-//         // if(i > 10**3) {
-//         //     console.log('broke a');
-//         //     break;
-//         // }
-//     }
-
-//     // get operator
-//     op = expression[i]; i++; 
-
-//     // get second value
-//     while (!ops.includes(expression[i])) { // keep reading string until we hit an operator
-//         b += expression[i];
-//         i++;
-//         if(i == expression.length) {
-//             break;
-//         }
-//     }
-//     a = parseFloat(a); b = parseFloat(b);
-
-//     let result = operate(a, op, b);
-//     setDisplayValue(result);
-// }
 
 /***********/
 /*   DOM   */
