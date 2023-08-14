@@ -64,7 +64,7 @@ let numberContainer = document.querySelector('.numbers');
 
 for (let i = 0; i < 10; i++) {
     let btn = document.createElement('button');
-    btn.classList.add('btn-${i}');
+    btn.classList.add(`btn-${i}`);
     btn.textContent = i;
     numberContainer.appendChild(btn);
 }
