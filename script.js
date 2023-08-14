@@ -50,6 +50,27 @@ function appendDisplayValue(charToAppend) {
     display.textContent += charToAppend;
 }
 
+function evaluateDisplay() { // happens when you hit equals
+    let expression = getDisplayValue().split("");
+    // get first value
+    let a = 0; let b = 0; // containers for first and second values
+    placeValue = 0;
+    while ( /^[0-9]/.test(expression.slice(-1)) ) { // while the last character of expression is a number, 
+        let digit = parseInt(expression.pop());
+        b += (digit * 10**placeValue);
+        placeValue++;
+    }
+    // get operation
+    placeValue = 0;
+    op = expression.pop();
+    // get second value
+    while ( /^[0-9]/.test(expression.slice(-1)) ) { // while the last character of expression is a number, 
+        let digit = parseInt(expression.pop());
+        a += (digit * 10**placeValue);
+        placeValue++;
+    }
+    return operate(a, b, op);
+}
 
 /***********/
 /*   DOM   */
@@ -73,6 +94,7 @@ for (let i = 0; i < operations.length; i++) {
     let btn = document.createElement('button');
     btn.classList.add(operationsClass[i]);
     btn.textContent = operations[i];
+    btn.addEventListener('click', () => appendDisplayValue(operations[i]));
     operationContainer.appendChild(btn);
 }
 
