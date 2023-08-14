@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeffee;
+}
+
+/* .canvas {
+    height: 500px;
+    width: 500px;
+    margin: 100px 100px;
+    border: solid 1px;
+    padding: 200px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display {
+    border: solid 1px;
+}
+
+.numbers {
+    border: solid 1px;
+    padding: 10px
+}
+ */
