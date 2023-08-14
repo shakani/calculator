@@ -52,6 +52,16 @@ function setDisplayValue(newDisplayValue) {
 function appendDisplayValue(charToAppend) {
     ops = ['+', '-', '*', '/'];
     let display = document.querySelector('.display');
+    let hasOperatorAlready = false;
+    if (ops.includes(charToAppend)) { // if we're placing an operator, check if there's already one
+        for(let i = 1; i < display.textContent.length; i++) { // start from 1 to exclude negative sign on numbers
+            if (ops.includes(display.textContent[i])) {
+                hasOperatorAlready = true;
+                break;
+            }
+        }
+        if(hasOperatorAlready) { evaluateDisplay(); }
+    }
 
     if (display.textContent === '0' && /^[0-9]/.test(charToAppend)) {
         display.textContent = charToAppend;
@@ -66,7 +76,12 @@ function appendDisplayValue(charToAppend) {
 
 function evaluateDisplay() {
     let expression = getDisplayValue().split("");
-    expression.pop(); // remove equals sign
+    // filter out undefined
+    expression = expression.filter((c) => !/^[a-zA-z]/.test(c));
+    console.log(expression);
+    if (expression.slice(-1)[0] === '=') {
+        expression.pop(); // remove equals sign
+    }
     let result = evaluateExpression(expression);
     setDisplayValue(result);
 }
