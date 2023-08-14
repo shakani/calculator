@@ -45,3 +45,15 @@ for (let i = 0; i < 10; i++) {
     btn.textContent = i;
     numberContainer.appendChild(btn);
 }
+
+let operationContainer = document.querySelector('.operations');
+
+operations = ['+', '-', '*', '/', 'AC'];
+operationsClass = ['add', 'subtract', 'multiply', 'divide', 'clear'];
+
+for (let i = 0; i < operations.length; i++) {
+    let btn = document.createElement('button');
+    btn.classList.add(operationsClass[i]);
+    btn.textContent = operations[i];
+    operationContainer.appendChild(btn);
+}
