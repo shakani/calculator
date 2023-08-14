@@ -52,6 +52,9 @@ function appendDisplayValue(charToAppend) {
 
 function evaluateDisplay() { // happens when you hit equals
     let expression = getDisplayValue().split("");
+    if (expression.slice(-1) === '=') {
+        expression.pop(); // get rid of equals sign
+    }
     // get first value
     let a = 0; let b = 0; // containers for first and second values
     placeValue = 0;
