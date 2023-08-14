@@ -98,7 +98,9 @@ function evaluateExpression(expression) { // expression is an array type
             op = expression.pop();
             console.log(expression, op, secondArgument);
             firstArgument = evaluateExpression(expression);
-            return operate(firstArgument, op, secondArgument);
+            let result = operate(firstArgument, op, secondArgument);
+            console.log(result);
+            return result;
         }
     }
 }
