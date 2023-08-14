@@ -61,6 +61,7 @@ function appendDisplayValue(charToAppend) {
 
 function evaluateDisplay() { // happens when you hit equals
     let expression = getDisplayValue().split("");
+    console.log(expression);
 
     let a = ''; let b = ''; // containers for first and second values
     let i = 0; // iterator through string
@@ -89,20 +90,6 @@ function evaluateDisplay() { // happens when you hit equals
     }
     a = parseFloat(a); b = parseFloat(b);
 
-    // while ( /^[0-9]/.test(expression.slice(-1)) ) { // while the last character of expression is a number, 
-    //     let digit = parseInt(expression.pop());
-    //     b += (digit * 10**placeValue);
-    //     placeValue++;
-    // }
-    // // get operation
-    // placeValue = 0;
-    // op = expression.pop();
-    // // get second value
-    // while ( /^[0-9]/.test(expression.slice(-1)) ) { // while the last character of expression is a number, 
-    //     let digit = parseInt(expression.pop());
-    //     a += (digit * 10**placeValue);
-    //     placeValue++;
-    // }
     let result = operate(a, op, b);
     setDisplayValue(result);
 }
