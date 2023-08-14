@@ -63,33 +63,15 @@ function evaluateDisplay() {
     let expression = getDisplayValue().split("");
     expression.pop(); // remove equals sign
     console.log(expression);
-    let result = evaluateDisplay(expression);
+    let result = evaluateExpression(expression);
+    console.log(result);
     setDisplayValue(result);
 }
 
 function evaluateExpression(expression) { // expression is an array type
     stack = []; 
     operations = ['+', '-', '*', '/'];
-    while (!operations.includes(expression.slice(-1))) { // while top of expression is a number, keep adding to stack
-        stack.push(expression.pop());
-    }
-    if (expression === '') { // no operator in expression
-        let result = '';
-        for(let i = 0; i < stack.length; i++) {
-            result += stack.pop();
-        }
-        return parseFloat(result); 
-    }
-    else { // operator in expression
-        operator = expression.pop();
-        let firstArgument = '';
-        for (let i = 0; i < firstArgument.length; i++) {
-            firstArgument += stack.pop();
-        }
-        firstArgument = parseFloat(firstArgument); // convert first argument to a float from stack
-        secondArgument = evaluateDisplay(expression); // evaluate the rest of the expression
-        return operate(firstArgument, operator, secondArgument);
-    }
+    
 }
 
 // function evaluateDisplayOld() { // happens when you hit equals
