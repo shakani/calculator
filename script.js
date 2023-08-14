@@ -48,8 +48,8 @@ for (let i = 0; i < 10; i++) {
 
 let operationContainer = document.querySelector('.operations');
 
-operations = ['+', '-', '*', '/', 'AC'];
-operationsClass = ['add', 'subtract', 'multiply', 'divide', 'clear'];
+operations = ['+', '-', '*', '/', '=', 'AC'];
+operationsClass = ['add', 'subtract', 'multiply', 'divide', 'equals', 'clear'];
 
 for (let i = 0; i < operations.length; i++) {
     let btn = document.createElement('button');
