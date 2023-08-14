@@ -45,7 +45,6 @@ function setDisplayValue(newDisplayValue) {
     let roundedValue = newDisplayValue.toString();
     if (roundedValue.length > 8) {
         roundedValue = roundedValue.slice(0, 8);
-        console.log('rounding');
     }
     display.textContent = roundedValue;
 }
